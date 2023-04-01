@@ -56,10 +56,15 @@
         <li>
           <div><%= a_package.description%></div>
 
-          <div>
-            
-          Supposed to arrive on <%=a_package.arrival%>
-          </div>
+          <% if a_package.arrival < Date.today-3 %>
+            <div class="days_ago">
+              Supposed to arrive on <%=a_package.arrival%>
+            </div>
+          <% else%>
+            <div>
+              Supposed to arrive on <%=a_package.arrival%>
+            </div>
+          <% end%>
 
           <form action="/modify_package/<%= a_package.id %>" method="post">
             <input type="hidden" name="query_status" value="received">
